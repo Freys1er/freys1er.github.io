@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Flow Flashcards - Search</title>
     <link rel="stylesheet" href="../style.css"> <!-- Global styles -->
-    <link rel="stylesheet" href="style.css">   <!-- Search specific styles -->
+    <link rel="stylesheet" href="style.css"> <!-- Search specific styles -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <script src="//console.re/connector.js" data-channel="hive-flow" id="consolerescript"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4619493599379175"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,23 +24,23 @@
         <!-- Search Page Content -->
         <header class="search-header">
             <button id="search-back-btn" class="icon-button" title="Back to Home">
-                 <!-- Use home icon for back -->
+                <!-- Use home icon for back -->
                 <img src="../../icons/home.svg" alt="Back">
             </button>
             <input type="search" id="search-results-input" placeholder="Search for sets...">
         </header>
 
         <div id="search-results-container">
-             <!-- Info area for loading or no results -->
+            <!-- Info area for loading or no results -->
             <div id="search-info" class="hidden">
-                 <div id="search-loading-placeholder" class="loading-placeholder hidden">
+                <div id="search-loading-placeholder" class="loading-placeholder hidden">
                     <div class="loading-item"></div>
                     <div class="loading-item"></div>
                     <div class="loading-item"></div>
                 </div>
                 <p id="search-message"></p> <!-- For "No results" or errors -->
             </div>
-             <!-- Actual results list -->
+            <!-- Actual results list -->
             <ul id="search-results-list">
                 <!-- Search results will be generated here -->
             </ul>
@@ -54,4 +55,5 @@
     <script src="../server.js"></script> <!-- Server functions -->
     <script src="script.js"></script> <!-- Search page specific script -->
 </body>
+
 </html>
