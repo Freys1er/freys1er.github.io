@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			hideLoading(); // Hide loading after local load is complete
 
 			// Check for updates in background ONLY if logged in and it's a server set
-			if (isUserLoggedIn() && !currentSetData.isLocal && typeof server === 'function') {
+			if (isUserLoggedIn() && !currentSetData.isLocal && typeof doGet === 'function') {
 				fetchSetFromServer(setId, true).catch(err => {
 					console.warn("Background update check failed:", err);
 					// Do not show loading/errors for background checks
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		} else {
 			console.log("Set not found locally, trying server.");
-			if (typeof server === 'function') {
+			if (typeof doGet === 'function') {
 				// Pass token if available, otherwise server handles anonymous request
 				fetchSetFromServer(setId, false); // This function handles its own loading/error display
 			} else {
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	async function fetchSetFromServer(setId, isUpdateCheck = false) {
-		if (typeof server !== 'function') {
+		if (typeof doGet !== 'function') {
 			if (!isUpdateCheck) showError("Cannot fetch set: Configuration error.");
 			return;
 		}
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Attempt server save only if logged in AND it's relevant (new or existing server set)
 		if (isUserLoggedIn() && (isExistingServerSet || isNewLocalSet)) {
-			if (typeof server !== 'function') {
+			if (typeof doGet !== 'function') {
 				showError("Cannot save online: Server connection unavailable.");
 				return; // Don't proceed without server function
 			}
