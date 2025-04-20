@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Premium - Unlock More</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="premium-header">
+        <!-- Added animate-on-load class -->
+        <div class="header-content animate-on-load">
+            <h1>Flow Premium</h1>
+            <p>Learn with Confidence.</p>
+        </div>
+
+        <video id="preview" autoplay muted playsinline>
+            <source src="preview.mp4" type="video/mp4" class="fade-bottom">
+            Your browser does not support the video tag.
+        </video>
+    </header>
+
+    <main class="premium-content">
+        <section class="features">
+            <!-- Added animate-on-scroll class -->
+            <h2 class="animate-on-scroll">Why Go Premium?</h2>
+            <div class="feature-grid">
+                <!-- Added 'animate-on-scroll' class -->
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🚫</div>
+                    <h3>Ad-Free Experience</h3>
+                    <p>Enjoy seamless workflows without any interruptions. Focus purely on your tasks.</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">💎</div>
+                    <h3>Exclusive Gemini Access</h3>
+                    <p>Unlock powerful AI capabilities with integrated Gemini features, only for Premium users.</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Priority Support</h3>
+                    <p>Get faster responses and dedicated help from our support team.</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🎨</div>
+                    <h3>More Themes & Options</h3>
+                    <p>Access exclusive themes and customization settings to personalize your Flow.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Graph Section -->
+        <section class="performance-section"> <!-- JS should add 'is-visible' here -->
+            <h2>Performance Comparison</h2>
+            <div class="performance-graph">
+                <div class="graph-area"> <!-- Has height: 250px -->
+
+                    <div class="bar-group">
+                        <div class="graph-bar bar-non-member"> <!-- Has BOTH classes -->
+                            <span class="bar-value">x2.4</span>
+                        </div>
+                        <div class="bar-label">Traditional</div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="graph-bar bar-member"> <!-- Has BOTH classes -->
+                            <span class="bar-value">x3.6</span>
+                        </div>
+                        <div class="bar-label">Member</div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="graph-bar bar-premium"> <!-- Has BOTH classes -->
+                            <span class="bar-value">x5.2</span>
+                        </div>
+                        <div class="bar-label">Premium</div>
+                    </div>
+
+                </div>
+                <p class="graph-caption">Relative performance increase based on membership tier.</p>
+            </div>
+        </section>
+
+
+        <section class="howitworks-section animate-on-scroll"> <!-- Add animate-on-scroll for the observer -->
+            <h2 class="animate-on-scroll">Forgetting Curve</h2> <!-- Animate heading too -->
+            <div class="forgetting-graph">
+                <div class="forgetting-area">
+                    <!-- SVG goes here -->
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+                        <!-- Define the gradient -->
+                        <defs>
+                            <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <!-- Start Grey (use your theme variable) -->
+                                <stop offset="0%" stop-color="var(--secondary-text-color)" />
+                                <!-- End Green (use your theme variable) -->
+                                <stop offset="100%" stop-color="var(--green-color)" />
+                            </linearGradient>
+                        </defs>
+                        <!-- The path for the curve -->
+                        <!-- Coordinates: M=Move to, Q=Quadratic Bezier curve -->
+                        <!-- (startX startY, controlX controlY, endX endY) -->
+                        <!-- Adjust these numbers to change the curve shape -->
+                        <path class="forgetting-curve" d="M 5 5 Q 50 100 195 95" fill="none" stroke="url(#curveGradient)"
+                            stroke-width="4" stroke-linecap="round" />
+                    </svg>
+                    <!-- End SVG -->
+                </div>
+                <p class="graph-caption animate-on-scroll">Flashcards ordered dynamically based on retention</p>
+            </div>
+        </section>
+
+        <section class="testimonials-section animate-on-scroll">
+            <h2>What Our Premium Members Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <blockquote>"The performance boost was immediate. Premium unlocked features I didn't even know I needed!"</blockquote>
+                    <cite>- Alex R. (Developer)</cite>
+                </div>
+                <div class="testimonial-item">
+                    <blockquote>"Worth every penny. The smart scheduling keeps me on track like nothing else."</blockquote>
+                    <cite>- Sarah K. (Student)</cite>
+                </div>
+                <!-- Add more -->
+            </div>
+        </section>
+
+        <section class="comparison-section animate-on-scroll">
+            <h2>Unlock Your Full Potential</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Free</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr> <td>Basic Flashcards</td> <td>✔️</td> <td>✔️</td> </tr>
+                    <tr> <td>Performance Graph</td> <td>❌</td> <td>✔️</td> </tr>
+                    <tr> <td>Smart Scheduling</td> <td>❌</td> <td>✔️</td> </tr>
+                    <tr> <td>AI flashcards</td> <td>❌</td> <td>✔️</td> </tr>
+                    <tr> <td>Ad-Free Experience</td> <td>❌</td> <td>✔️</td> </tr>
+                    <!-- Add all relevant features -->
+                </tbody>
+            </table>
+        </section>
+
+
+        <section class="cta-section animate-on-scroll">
+            <!-- Added animate-on-scroll class -->
+            <h2>Ready to Upgrade?</h2>
+            <p>Go premium and unlock the full potential of Flow.</p>
+            <button class="cta-button">Contact Sales</button>
+            <p class="price-info">Starting from just <s>$9.99</s> $5.99/month</p>
+        </section>
+
+        <hr class="divider">
+
+        <section class="redeem-section">
+            <h2>Have a Gift Card?</h2>
+            <p>Enter your code below to redeem your Flow Premium access.</p>
+            <div class="gift-card-container">
+                <input type="text" id="giftCardCode" class="gift-card-input" placeholder="Enter Your Premium Code">
+                <button id="redeemButton" class="redeem-button">Redeem</button>
+            </div>
+            <p id="redeemMessage" class="redeem-message"></p>
+        </section>
+    </main>
+
+    <footer class="premium-footer">
+        <p>© 2024 Flow App. All rights reserved.</p>
+    </footer>
+
+    
+    <script src="../utils.js"></script>
+    <script src="../server.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

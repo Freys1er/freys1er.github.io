@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('home-search-input');
     const streakCirclesContainer = document.getElementById('streak-circles');
     const recentSetsList = document.getElementById('recent-sets-list');
-    const likedSetsList = document.getElementById('liked-sets-list');
 
     // Tab buttons
     const tabButtons = document.querySelectorAll('.secondary-nav .tab-button');
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateUserIcon(); // Update icon based on loaded account_data
         renderStreak();
         renderRecentSets();
-        renderLikedSets();
 
         // Check if streak data needs updating
         if (updateStreakData(browserdata)) { // From utils.js
@@ -297,6 +295,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Recently Opened Sets (limit to maybe 10?)
         const maxRecentSets = 10;
+        let index = 0;
+        const adContainer = document.createElement('li'); // Create a new div element
+        adContainer.className = 'google-ad';
+        adContainer.innerHTML = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4619493599379175"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4619493599379175"
+     data-ad-slot="2742538789"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>`; // Set the inner HTML of the div
+
+        recentSetsList.appendChild(adContainer);
+        console.log(recentSetsList);
+
         browserdata.saved.slice(0, maxRecentSets).forEach((set) => {
             // Make sure set has an ID, generate one if missing (though ideally backend provides it)
             if (!set.setId) {
@@ -305,40 +321,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Consider saving this back immediately if needed for consistency
             }
             const li = createSetListItem(set);
+            console.log(index);
+            if (index % 5 === 0) {
+                console.log("Ad container")
+                recentSetsList.appendChild(adContainer);
+            }
+            index++;
+
             recentSetsList.appendChild(li);
-        });
-    }
-
-    function renderLikedSets() {
-        if (!likedSetsList || !browserdata.saved) return;
-        likedSetsList.innerHTML = ''; // Clear previous
-
-        // 1. "Create New" Item
-        const newSetItem = document.createElement('li');
-        newSetItem.className = 'set-item create-new-item';
-        newSetItem.innerHTML = `
-            <div class="set-thumbnail">+</div>
-            <div class="set-details">
-                <div class="set-title">Create New Set</div>
-                <div class="set-message">Start with a blank slate</div>
-            </div>`;
-        newSetItem.addEventListener('click', () => {
-            // Redirect to Preview page with a flag for creating new
-            safeReplace('Flow/Preview/?new=true');
-        });
-        likedSetsList.appendChild(newSetItem);
-
-        // 2. Recently Opened Sets (limit to maybe 10?)
-        const maxRecentSets = 10;
-        browserdata.saved.slice(0, maxRecentSets).forEach((set) => {
-            // Make sure set has an ID, generate one if missing (though ideally backend provides it)
-            if (!set.setId) {
-                console.warn("Set missing setId, generating temporary one:", set.name);
-                set.setId = 'local_' + Date.now() + Math.random().toString(16).substring(2);
-                // Consider saving this back immediately if needed for consistency
-            }
-            const li = createSetListItem(set);
-            likedSetsList.appendChild(li);
         });
     }
 
@@ -433,11 +423,22 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'google-gemini':
                 safeReplace('Flow/Gemini');
                 break;
+            case 'premium':
+                safeReplace('Flow/Premium');
+                break;
             case 'statistics':
                 safeReplace('Flow/Statistics');
                 break;
             case 'help':
-                safeReplace('Flow/Help');
+                const emailAddress = 'lfrey.0001@gmail.com'; // Replace with the actual email address
+                const subject = 'Flow - Help'; // Optional: Set a default subject
+                const body = 'Hello, '; // Optional: Set a default body
+
+                // Construct the mailto link
+                const mailtoLink = `mailto:${encodeURIComponent(emailAddress)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                // Open the email client
+                window.location.href = mailtoLink;
                 break;
             default:
                 console.warn("Unknown action for quick study:", action);

@@ -1,0 +1,1125 @@
+/* General Styles - Dark Theme */
+:root {
+    --primary-color: #0a84ff;
+    /* Updated Apple Blue */
+    --secondary-color: #5e5ce6;
+    /* Updated Apple Indigo */
+    --accent-color: #ff9f0a;
+    /* Updated Apple Orange */
+    --green-color: #30d158;
+    /* Updated Apple Green */
+
+    --bg-color: #000000;
+    /* Black Background */
+    --card-bg: #1c1c21;
+    /* Dark Gray Card Background */
+    --text-color: #f5f5f7;
+    /* Light Gray/Off-White Text */
+    --secondary-text-color: #8e8e93;
+    /* Mid Gray Secondary Text */
+    --premium-text: #ffffff;
+    /* Pure White for Header */
+    --footer-bg: #1c1c1e;
+    /* Match card background */
+    --footer-text: #8e8e93;
+    /* Match secondary text */
+
+    --input-border: #3a3a3c;
+    /* Subtle border color */
+    --input-bg: #2c2c2e;
+    /* Slightly lighter input bg */
+    --input-focus-border: var(--primary-color);
+    --input-focus-shadow: rgba(10, 132, 255, 0.3);
+    /* Blue focus glow */
+
+    --button-hover-primary: #3395ff;
+    --redeem-button-bg: var(--green-color);
+    --redeem-button-hover: #3ff26a;
+
+    --graph-bar-non: #505052;
+    /* Darker Gray for non-member */
+    --graph-bar-member-start: #64d2ff;
+    /* Lighter Blue */
+    --graph-bar-member-end: var(--primary-color);
+    /* Apple Blue */
+    --graph-bar-premium-start: var(--accent-color);
+    /* Apple Orange */
+    --graph-bar-premium-end: #ffd60a;
+    /* Apple Yellow */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI',
+        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+        'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Smoother fonts on macOS/iOS */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+.premium-header {
+    position: relative;
+    /* Establish positioning context for absolute children */
+    /* Other header styles */
+
+    color: var(--premium-text);
+    text-align: center;
+    padding: 10vh 1rem 0vh 1rem;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    /* Removed box-shadow for cleaner dark look */
+}
+
+.header-content {
+    position: absolute;
+    /* Position relative to the closest positioned ancestor (.premium-header) */
+    top: 10vh;
+    /* Adjust this value to control the distance from the top */
+    left: 35vw;
+    /* Adjust for the element's own width to truly center */
+    color: white;
+    /* Or whatever color you want for the text */
+    text-align: center;
+    /* Center the text within the header-content div */
+    z-index: 10;
+    /* Ensure the text is on top of the video (higher than the video's z-index, which is auto or 0) */
+    /* Add any other text styling you need (font-size, etc.) */
+}
+
+#preview {
+    display: block;
+    /* Prevent potential inline spacing issues */
+    width: 100%;
+    /* Make the video take the full width of the header */
+
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header Text Animation */
+.animate-on-load {
+    opacity: 0;
+    transform: translateY(10px);
+    /* Start slightly lower */
+    /* Smoother cubic-bezier, longer duration */
+    animation: fadeInSlideUp 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+
+.premium-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    /* Subtle letter spacing */
+}
+
+.premium-header p {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    opacity: 0.85;
+    /* Slightly less opacity */
+    font-weight: 400;
+}
+
+/* Main Content */
+.premium-content {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+}
+
+/* Features Section */
+.features {
+    margin-bottom: 4rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 18px;
+    text-align: center;
+    /* Removed shadow, added subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    background-color: #2c2c2e;
+    /* Slightly lighter on hover */
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.feature-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    line-height: 1;
+}
+
+.feature-item h3 {
+    margin-bottom: 0.7rem;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+}
+
+/* --- How It Works Section Styles --- */
+.howitworks-section {
+    /* Similar styling to your performance-section */
+    background-color: var(--card-bg);
+    padding: 3rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Add position relative if needed for internal absolute positioning */
+    position: relative;
+}
+
+.howitworks-section h2 {
+    /* Inherits global h2 styles, adjust if needed */
+    margin-bottom: 2.5rem;
+    /* Already defined globally */
+    text-align: center;
+}
+
+.forgetting-graph {
+    /* Similar to performance-graph */
+    max-width: 700px;
+    /* Or adjust as needed */
+    margin: 1rem auto 0 auto;
+}
+
+.forgetting-area {
+    /* Needs a defined height for the SVG to fill */
+    height: 250px;
+    /* Adjust as needed */
+    width: 100%;
+    /* Take full width of .forgetting-graph */
+    margin-bottom: 1rem;
+    /* Space before caption */
+    position: relative;
+    /* Context for SVG if needed */
+    border-bottom: 1px solid var(--input-border);
+    /* Optional: visual separator */
+    padding-bottom: 1rem;
+    /* Optional: spacing */
+}
+
+/* Style the SVG element itself */
+.forgetting-area svg {
+    display: block;
+    /* Remove extra space below */
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    /* Allows stroke to slightly exceed viewbox if needed */
+}
+
+/* --- Curve Drawing Animation --- */
+
+/* Select the path */
+.forgetting-curve {
+    /* Calculate or estimate the total length of the path */
+    /* Using a large number often works visually */
+    stroke-dasharray: 500;
+    /* Make this number larger than the path length */
+    stroke-dashoffset: 500;
+    /* Start with the path hidden (offset by its length) */
+
+    /* Define the animation */
+    /* Animation is initially paused or defined only when visible */
+    animation: drawCurve 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    animation-play-state: paused;
+    /* Start paused */
+}
+
+/* Trigger the animation when the SECTION becomes visible */
+.howitworks-section.is-visible .forgetting-curve {
+    animation-play-state: running;
+    /* Play the animation */
+}
+
+/* Keyframes for the drawing animation */
+@keyframes drawCurve {
+    from {
+        stroke-dashoffset: 500;
+        /* Start hidden */
+    }
+
+    to {
+        stroke-dashoffset: 0;
+        /* Animate to fully drawn */
+    }
+}
+
+/* Inherits graph-caption styles, adjust if needed */
+.forgetting-graph .graph-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    margin-top: 1.5rem;
+}
+
+/* --- Ensure general scroll animations apply --- */
+.howitworks-section.animate-on-scroll,
+.howitworks-section .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.howitworks-section.is-visible,
+.howitworks-section.is-visible .animate-on-scroll {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Add stagger delays if needed for elements inside this section */
+.howitworks-section.is-visible h2.animate-on-scroll {
+    transition-delay: 0.1s;
+}
+
+.howitworks-section.is-visible .forgetting-graph {
+    transition-delay: 0.2s;
+}
+
+/* Apply to graph container if desired */
+.howitworks-section.is-visible .graph-caption.animate-on-scroll {
+    transition-delay: 0.3s;
+}
+
+/* Performance Graph Section */
+.performance-section {
+    background-color: var(--card-bg);
+    padding: 3rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.performance-graph {
+    max-width: 700px;
+    margin: 1rem auto 0 auto;
+}
+
+.graph-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 250px;
+    border-bottom: 1px solid var(--input-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+
+.graph-bar {
+    width: 50px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transform-origin: bottom;
+    margin-bottom: 0.5rem;
+
+    /* --- ADD THIS: Initial state --- */
+    transform: scaleY(0);
+    /* Start scaled down to zero height */
+    /* --- END ADD --- */
+
+    /* Base transition applied BEFORE .is-visible */
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- ADD THIS: State when visible/animated --- */
+.graph-bar.is-visible {
+    transform: scaleY(1);
+    /* Target state: full height */
+}
+
+/* --- END ADD --- */
+
+
+.bar-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    /* Make sure --text-color is defined */
+
+    /* --- ADD THIS: Initial state --- */
+    opacity: 0;
+    /* --- END ADD --- */
+
+    /* Delay opacity fade until bar is mostly grown */
+    /* Transition applied BEFORE .is-visible */
+    transition: opacity 0.5s ease-out 0.8s;
+}
+
+/* --- ADD THIS: State when visible/animated --- */
+.graph-bar.is-visible .bar-value {
+    opacity: 1;
+    /* Target state: fully visible */
+}
+
+/* --- END ADD --- */
+
+
+/* Bar Heights and Colors */
+/* Make sure these variables are defined elsewhere! */
+/* Example:
+:root {
+  --graph-bar-non: #cccccc;
+  --graph-bar-member-start: #6a11cb;
+  --graph-bar-member-end: #2575fc;
+  --graph-bar-premium-start: #fc4a1a;
+  --graph-bar-premium-end: #f7b733;
+  --text-color: #333333;
+  --secondary-text-color: #777777;
+}
+*/
+.bar-non-member {
+    /* height: 25%; */
+    height: 4vh;
+    /* 25% of 250px */
+    background-color: var(--graph-bar-non);
+}
+
+.bar-member {
+    /* height: 50%; */
+    height: 8vh;
+    /* 50% of 250px */
+    background: linear-gradient(to top, var(--graph-bar-member-start), var(--graph-bar-member-end));
+}
+
+.bar-premium {
+    /* height: 90%; */
+    height: 20vh;
+    /* 90% of 250px */
+    background: linear-gradient(to top, var(--graph-bar-premium-start), var(--graph-bar-premium-end));
+}
+
+.bar-label {
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    /* Make sure --secondary-text-color is defined */
+    font-weight: 500;
+}
+
+.graph-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    margin-top: 1.5rem;
+}
+
+/* --- Graph Animation Trigger --- */
+/* When the section is visible, animate the bars */
+.performance-section.is-visible .graph-bar {
+    transform: scaleY(1);
+    /* Grow the bar */
+}
+
+.performance-section.is-visible .bar-value {
+    opacity: 1;
+    /* Target state: fully visible */
+}
+
+/* Stagger the bar animation */
+.performance-section.is-visible .bar-group:nth-child(1) .graph-bar {
+    transition-delay: 0.1s;
+}
+
+.performance-section.is-visible .bar-group:nth-child(2) .graph-bar {
+    transition-delay: 0.25s;
+}
+
+.performance-section.is-visible .bar-group:nth-child(3) .graph-bar {
+    transition-delay: 0.4s;
+}
+
+/* When the section is visible, fade in the values (delay handled in .bar-value) */
+.performance-section.is-visible .bar-value {
+    opacity: 1;
+}
+
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    background-color: transparent;
+    padding: 2.5rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 3rem;
+}
+
+.cta-button {
+    background: var(--primary-color);
+    color: var(--premium-text);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    /* Subtle glow effect */
+    box-shadow: 0 0 15px rgba(10, 132, 255, 0.3), 0 0 5px rgba(10, 132, 255, 0.2);
+}
+
+.cta-button:hover {
+    background-color: var(--button-hover-primary);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(10, 132, 255, 0.4), 0 0 10px rgba(10, 132, 255, 0.3);
+}
+
+.price-info {
+    margin-top: 1rem;
+    color: var(--secondary-text-color);
+    font-size: 0.95rem;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--input-border);
+    /* Use subtle border color */
+    margin: 4rem auto;
+    width: 80%;
+}
+
+/* Redeem Section */
+.redeem-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.redeem-section p {
+    margin-bottom: 1.5rem;
+    color: var(--secondary-text-color);
+}
+
+.gift-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.gift-card-input {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    /* Dark input background */
+    color: var(--text-color);
+    /* Light text */
+    box-shadow: none;
+    /* Remove inner shadow */
+    min-width: 280px;
+    text-align: center;
+    font-family: 'SF Mono', 'Courier New', Courier, monospace;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gift-card-input::placeholder {
+    color: var(--secondary-text-color);
+    /* Use secondary text color */
+    font-family: inherit;
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 400;
+}
+
+.gift-card-input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px var(--input-focus-shadow);
+    /* Apple-like focus ring */
+}
+
+.redeem-button {
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--redeem-button-bg);
+    color: #000;
+    /* Dark text on bright green button */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    line-height: 1.1rem;
+}
+
+.redeem-button:hover {
+    background-color: var(--redeem-button-hover);
+    transform: scale(1.03);
+}
+
+.redeem-message {
+    margin-top: 1rem;
+    font-weight: 500;
+    min-height: 1.2em;
+    color: var(--secondary-text-color);
+    /* Default message color */
+}
+
+/* Footer */
+.premium-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--input-border);
+    /* Subtle top border */
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Reduced slide distance */
+    /* Smoother easing */
+    transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for feature items (adjust delay slightly) */
+.feature-item.animate-on-scroll:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.feature-item.animate-on-scroll:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.feature-item.animate-on-scroll:nth-child(3) {
+    transition-delay: 0.25s;
+}
+
+.feature-item.animate-on-scroll:nth-child(4) {
+    transition-delay: 0.35s;
+}
+
+
+/* Keyframes for Header Animation */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .premium-header {
+        min-height: 50vh;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        left: -16vw;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .graph-area {
+        height: 200px;
+    }
+
+    .graph-bar {
+        width: 40px;
+    }
+
+    .gift-card-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .gift-card-input,
+    .redeem-button {
+        width: 90%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .premium-header {
+        padding: 18vh 1rem 6vh 1rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem;
+    }
+
+    .performance-section {
+        padding: 2rem 1rem;
+    }
+
+    .graph-bar {
+        width: 35px;
+    }
+
+    .bar-label,
+    .graph-caption,
+    .price-info {
+        font-size: 0.7rem;
+    }
+
+    .gift-card-input {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .redeem-button {
+        padding: 0.9rem 1.5rem;
+    }
+}
+
+#preview {
+    width: 100%;
+    /* Adjust as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    position: relative;
+
+
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+
+#preview::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    /* Adjust the height of the fade area */
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            /* Fully transparent at the top */
+            rgba(0, 0, 0, 0.2) 20%,
+            /* Slightly blacker */
+            rgba(0, 0, 0, 0.6) 60%,
+            /* More black */
+            rgba(0, 0, 0, 1) 100%
+            /* Solid black at the bottom */
+        );
+    pointer-events: none;
+    /* Allows clicks on the video to pass through the fade */
+}
+
+/* ============================================= */
+/*          Testimonials Section                 */
+/* ============================================= */
+
+.testimonials-section {
+    background-color: var(--card-bg);
+    padding: 3rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* Inherits global h2 styling */
+.testimonials-section h2 {
+    margin-bottom: 2.5rem;
+}
+
+.testimonial-grid {
+    display: grid;
+    /* Adjust minmax for desired minimum item width */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    /* Spacing between testimonials */
+    margin-top: 2.5rem;
+    text-align: left;
+    /* Align text inside items to the left */
+}
+
+.testimonial-item {
+    background-color: var(--input-bg);
+    /* Slightly different bg for contrast */
+    padding: 1.5rem;
+    border-radius: 12px;
+    /* Slightly smaller radius */
+    border: 1px solid var(--input-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    /* Use flexbox for better control */
+    flex-direction: column;
+    /* Stack quote and cite */
+}
+
+.testimonial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow on hover */
+}
+
+.testimonial-item blockquote {
+    font-style: italic;
+    color: var(--text-color);
+    margin: 0 0 1rem 0;
+    /* Remove default margins, add bottom margin */
+    flex-grow: 1;
+    /* Allow quote to take available space */
+    position: relative;
+    /* For pseudo-elements */
+    padding-left: 2.5rem;
+    /* Space for quote mark */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Adding quote marks */
+.testimonial-item blockquote::before {
+    content: '“';
+    position: absolute;
+    left: 0.5rem;
+    top: -0.2rem;
+    /* Adjust vertical position */
+    font-size: 3rem;
+    /* Size of the quote mark */
+    color: var(--primary-color);
+    /* Use theme color */
+    opacity: 0.7;
+    line-height: 1;
+    font-style: normal;
+    /* Keep quote mark non-italic */
+}
+
+.testimonial-item cite {
+    display: block;
+    /* Ensure it takes its own line */
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+    font-style: normal;
+    /* Override browser default */
+    margin-top: auto;
+    /* Push cite to the bottom if content varies */
+    padding-left: 2.5rem;
+    /* Align with quote text */
+}
+
+
+/* ============================================= */
+/*          Comparison Table Section             */
+/* ============================================= */
+
+.comparison-section {
+    background-color: var(--card-bg);
+    padding: 3rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Inherits global h2 styling */
+.comparison-section h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.comparison-table-container {
+    /* Add a container for potential horizontal scroll on small screens */
+    overflow-x: auto;
+    margin-top: 2.5rem;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+}
+
+.comparison-table {
+    width: 100%;
+    /* Minimum width before scrollbar appears */
+    /* max-width: 800px; */
+    /* Optional: Max width on large screens */
+    /* margin: 0 auto; */
+    /* Center table if max-width is set */
+    border-collapse: collapse;
+    /* Clean borders */
+    table-layout: fixed;
+    /* Helps with column widths */
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--input-border);
+    /* Horizontal lines */
+    vertical-align: middle;
+    /* Align icons and text nicely */
+}
+
+/* Header Row */
+.comparison-table thead th {
+    color: var(--secondary-text-color);
+    font-size: 0.85rem;
+    /* Slightly smaller header text */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom-width: 2px;
+    /* Thicker line below header */
+    white-space: nowrap;
+    /* Prevent headers breaking */
+}
+
+/* Feature Column (1st column) */
+.comparison-table td:first-child {
+    font-weight: 500;
+    color: var(--text-color);
+    width: 50%;
+    /* Allocate more space to feature names */
+}
+
+/* Free/Premium Columns (center align content) */
+.comparison-table th:nth-child(2),
+.comparison-table td:nth-child(2),
+.comparison-table th:nth-child(3),
+.comparison-table td:nth-child(3) {
+    text-align: center;
+    width: 25%;
+    /* Equal width for checkmark columns */
+}
+
+/* Styling for Checkmarks and Crosses */
+/* Add these classes to spans in your HTML: <span class="check">✔️</span> */
+.comparison-table .check,
+.comparison-table .cross {
+    font-size: 1.3rem;
+    /* Make icons slightly larger */
+    font-weight: bold;
+    display: inline-block;
+    /* Ensures proper alignment */
+    line-height: 1;
+}
+
+.comparison-table .check {
+    color: var(--green-color);
+}
+
+.comparison-table .cross {
+    color: #ff453a;
+    /* Apple Red for 'no' */
+    /* Use opacity if a lighter cross is preferred */
+    /* opacity: 0.7; */
+}
+
+/* Optional: Alternating row colors (striping) */
+.comparison-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+    /* Very subtle striping */
+}
+
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+    /* Remove border from last row */
+}
+
+
+/* ============================================= */
+/*             Guarantee Info                    */
+/* ============================================= */
+.guarantee-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    font-weight: 500;
+}
+
+.guarantee-info .check {
+    /* Assuming you use <span class="check">✅</span> */
+    color: var(--green-color);
+    font-size: 1em;
+    /* Match surrounding text size */
+    margin-right: 0.3em;
+    font-weight: normal;
+    /* Or bold if preferred */
+}
+
+/* ============================================= */
+/*          Responsive Adjustments               */
+/* ============================================= */
+
+@media (max-width: 768px) {
+
+    .testimonials-section,
+    .comparison-section {
+        padding: 2.5rem 1rem;
+        /* Reduce padding */
+    }
+
+    .testimonial-grid {
+        gap: 1rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.8rem 0.5rem;
+        /* Reduce cell padding */
+    }
+
+    .comparison-table {
+        /* Font size adjustments can happen here if needed */
+        /* font-size: 0.95rem; */
+    }
+}
+
+@media (max-width: 480px) {
+
+    .testimonials-section,
+    .comparison-section {
+        padding: 2rem 1rem;
+    }
+
+    .testimonial-item {
+        padding: 1rem;
+    }
+
+    .testimonial-item blockquote,
+    .testimonial-item cite {
+        padding-left: 2rem;
+        /* Adjust indent for smaller screens */
+    }
+
+    .testimonial-item blockquote::before {
+        left: 0.2rem;
+        font-size: 2.5rem;
+    }
+
+
+    .comparison-table {
+        font-size: 0.9rem;
+        /* Reduce font size overall in the table */
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.6rem 0.4rem;
+        /* Further reduce padding */
+    }
+
+    .comparison-table .check,
+    .comparison-table .cross {
+        font-size: 1.1rem;
+        /* Slightly smaller icons */
+    }
+}
+
+/* ============================================= */
+/*         Scroll Animation Triggering           */
+/* ============================================= */
+
+/* Ensure these sections are observed by your JS */
+/* Add class="animate-on-scroll" to the section tag in HTML */
+
+.testimonials-section.animate-on-scroll,
+.comparison-section.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.testimonials-section.is-visible,
+.comparison-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Stagger animation for testimonial items */
+.testimonials-section.is-visible .testimonial-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.testimonials-section.is-visible .testimonial-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.testimonials-section.is-visible .testimonial-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+/* Add more if needed */
+
+/* Note: Table animation usually applies to the whole section, not row by row */
