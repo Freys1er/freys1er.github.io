@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Flow Flashcards - Profile</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Global styles -->
+    <link rel="stylesheet" href="style.css"> <!-- Profile specific styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <script src="//console.re/connector.js" data-channel="hive-flow" id="consolerescript"></script>
+</head>
+
+<body>
+    <div id="app-container">
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="spinner-container visible"> <!-- Start visible -->
+            <div class="spinner"></div>
+            <p>Loading Profile...</p>
+        </div>
+
+        <!-- Profile Page Content -->
+        <header class="profile-header">
+            <button id="profile-back-btn" class="icon-button" title="Back to Home">
+                <img src="../../icons/home.svg" alt="Back/Home">
+            </button>
+            <div class="user-info">
+                <img src="../../icons/account.svg" alt="Profile Picture" class="profile-pic" id="profile-pic">
+                <h2 id="profile-username">Loading...</h2>
+                <h6 id="profile-member-since">Member since: Loading...</h6>
+            </div>
+        </header>
+
+        <!-- Secondary Info Tabs -->
+        <nav class="secondary-nav">
+            <button class="tab-button active" data-tab="owned">Owned Sets</button>
+            <button class="tab-button" data-tab="editable">Colaborated</button>
+            <button class="tab-button" data-tab="account">Account</button> <!-- Renamed -->
+        </nav>
+
+        <!-- Tab Content Area -->
+        <div class="tab-content">
+            <!-- Owned Sets Content -->
+            <div id="owned-content" class="tab-content-section active">
+                <h3>Owned Sets (<span id="owned-count">0</span>)</h3>
+                <ul id="owned-sets-list" class="set-list">
+                    <li>Loading sets...</li>
+                </ul>
+            </div>
+
+            <!-- Editable Sets Content -->
+            <div id="editable-content" class="tab-content-section">
+                <h3>Editable Sets (<span id="editable-count">0</span>)</h3>
+                <ul id="editable-sets-list" class="set-list">
+                    <li>Loading sets...</li>
+                </ul>
+            </div>
+
+            <!-- Account Details Content -->
+            <div id="account-content" class="tab-content-section">
+                <div class="seperator">
+                    <h2>
+                        Account Details
+                    </h2>
+                </div>
+
+                <div class="detail-item" id="username-item">
+                    <strong>Username:</strong>
+                    <input type="text" id="username-input" placeholder="Loading..." class="input-field">
+                </div>
+                <div class="detail-item" id="detail-username">
+                    <strong>Username:</strong> <span>Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <strong>User ID:</strong> <span id="detail-user-id">Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Account Created:</strong> <span id="detail-created-date">Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Total Likes Received:</strong> <span id="detail-total-likes">Loading...</span>
+                </div>
+
+
+                <button id="save-button" class="text-button"
+                    style="margin-bottom: 20px; background-color: var(--success-color); color: white; width: 100%;">Save</button>
+
+                <div class="seperator">
+                    <h3>
+                        Subscription Details
+                    </h3>
+                </div>
+
+
+                <div class="detail-item">
+                    <strong>Subscription Plan:</strong> <span id="detail-subscription">Loading...</span>
+                </div>
+                <div class="detail-item" id="sub-expiry-item" style="display: none;">
+                    <strong>Subscription Expires:</strong> <span id="detail-subscription-expiry">Loading...</span>
+                </div>
+
+                <!-- Gift card redeem -->
+                <div class="detail-item" id="redeem-code">
+                    <strong>Redeem Code:</strong>
+                    <input type="text" id="redeem-code-input" placeholder="Enter card code" class="input-field">
+                </div>
+                <span id="redeem-code-error" class="error-message" style="display: none; color: rgb(255, 0, 0);">Invalid code. Please try
+                    again.</span>
+
+                <button id="redeem-button" class="text-button"
+                    style="margin-top: 10px; background-color: var(--info-color); color: white; width: 100%;">Redeem</button>
+
+                <!-- Add Logout button or other actions here -->
+                <button id="logout-button" class="text-button"
+                    style="margin-top: 60px; background-color: var(--red-color); color: white; width: 100%;">Logout</button>
+
+
+            </div>
+        </div>
+
+        <!-- Optional Footer -->
+        <!-- <footer class="profile-footer">
+            <p>User profile actions could go here.</p>
+        </footer> -->
+
+        <!-- Toast Message Area (Global) -->
+        <div id="toast-message"></div>
+
+    </div>
+
+    <script src="../utils.js"></script> <!-- Shared utilities -->
+    <script src="../server.js"></script> <!-- Server functions -->
+    <script src="script.js"></script> <!-- Profile page specific script -->
+</body>
+
+</html>

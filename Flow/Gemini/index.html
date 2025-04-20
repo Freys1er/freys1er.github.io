@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini and Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Hello, Gemini</h1>
+        <p>Enter a topic, and Google Gemini will create flashcards!</p>
+        <textarea id="prompt-input" rows="5"
+            placeholder="Enter a topic (e.g., Photosynthesis, World War II Causes, JavaScript Basics)"></textarea>
+        <div class="slider-container">
+            <label for="num-cards">📇:</label>
+            <input type="range" id="num-cards" min="5" max="100" value="10" step="5">
+            <span id="slider-value">10</span>
+        </div>
+        <button id="generate-button">Generate Flashcards</button>
+    </div>
+
+    <!-- Generation Success Area (Initially Hidden) -->
+    <!-- Generation Success Area (Initially Hidden) -->
+    <div id="generation-success">
+        <!-- List to display flashcards one by one -->
+        <ul id="flashcard-list"></ul>
+        <!-- Final message shown after animation -->
+        <p id="count-message" class="hidden">0 out of 0</p>
+        <p id="success-message" class="hidden"></p>
+        <!-- Study button shown after animation -->
+        <button id="study-button" class="hidden">Study Now</button>
+    </div>
+
+    <div id="toast-message"></div>
+
+    <footer>
+        <p>© 2023 Flow. All rights reserved.</p>
+        <p>Powered by Google Gemini</p>
+        <p>Icons by <a href="https://www.flaticon.com/" target="_blank">Flaticon</a></p>
+        <!-- Removed Freepik background credit as we are using solid color now -->
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="gemini-loader">
+            <div class="gemini-dot gemini-dot1"></div>
+            <div class="gemini-dot gemini-dot2"></div>
+            <div class="gemini-dot gemini-dot3"></div>
+        </div>
+        <p>Generating with Gemini...</p>
+    </div>
+
+    <script src="../utils.js"></script>
+    <script src="../server.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

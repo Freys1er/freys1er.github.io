@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Flow Flashcards - Set</title>
+    <!-- Link global styles FIRST if you have them -->
+    <!-- <link rel="stylesheet" href="../style.css"> -->
+    <!-- Link page-specific styles -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Console.Re Connector (Optional) -->
+    <!-- <script src="//console.re/connector.js" data-channel="YOUR_CHANNEL" id="consolerescript"></script> -->
+</head>
+
+<body>
+    <div id="app-container">
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="spinner-container visible"> <!-- Start visible -->
+            <div class="spinner"></div>
+            <p>Loading Set...</p>
+        </div>
+
+        <!-- Preview Page Structure -->
+        <div id="page-preview" class="page"> <!-- Start inactive -->
+            <header class="preview-header">
+                <div class="set-header">
+                    <h2 id="set-detail-title">Loading Set...</h2>
+                    <h6 id="set-creator" data-owner-id="">by Loading...</h6>
+                </div>
+                <button id="preview-home-btn" class="icon-button" title="Back to Home">
+                    <!-- Make sure the icon path is correct -->
+                    <img src="../../icons/home.svg" alt="Back">
+                </button>
+            </header>
+
+            <!-- Secondary Info Tabs -->
+            <nav class="secondary-nav">
+                <button class="tab-button active" data-tab="preview">Preview</button>
+                <button class="tab-button" data-tab="stats">Stats</button>
+                <button class="tab-button" data-tab="permissions">Details</button>
+            </nav>
+
+            <!-- Tab Content Area -->
+            <div class="tab-content">
+                <!-- Preview Content -->
+                <div id="preview-content" class="tab-content-section active">
+                    <h3>Flashcards (<span id="card-count">0</span>)</h3>
+                    <ul id="flashcard-list" class="flashcard-list">
+                        <!-- Placeholder -->
+                        <li>
+                            <div class="flashcard-q">Loading question...</div>
+                            <div class="flashcard-a">Loading answer...</div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Stats Content -->
+                <div id="stats-content" class="tab-content-section">
+                    <h3>Statistics</h3>
+                    <div class="stat-item">
+                        <strong>Your Average Study Time:</strong> <span id="user-avg-time">Not tracked yet</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Community Average Study Time:</strong> <span id="community-avg-time">N/A</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Usage Over Time:</strong>
+                        <div class="graph-placeholder">[Graph coming soon]</div>
+                    </div>
+                </div>
+                <!-- Permissions/Details Content -->
+                <div id="permissions-content" class="tab-content-section">
+                    <h3>Details & Permissions</h3>
+                     <div class="permission-item">
+                        <strong>Set ID:</strong> <span id="details-set-id">Loading...</span>
+                    </div>
+                    <div class="permission-item">
+                        <strong>Last Updated:</strong> <span id="last-updated-date">Unknown</span>
+                    </div>
+                    <div class="permission-item">
+                        <strong>Editors:</strong>
+                        <ul id="editors-list" class="user-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                    <div class="permission-item">
+                        <strong>Viewers:</strong>
+                        <ul id="viewers-list" class="user-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Primary Actions Footer -->
+             <div class="preview-footer">
+                <div class="primary-actions">
+                    <button id="study-set-button" class="set-detail-button primary" disabled>Study</button>
+                    <button id="edit-set-button" class="set-detail-button secondary" disabled>Edit</button>
+                    <!-- Add Share Button if needed -->
+                    <!-- <button id="share-set-button" class="set-detail-button secondary">Share</button> -->
+                </div>
+            </div>
+
+        </div><!-- End #page-preview -->
+
+
+        <!-- Flashcards Page Structure -->
+        <div id="page-flashcards" class="page"> <!-- Start inactive -->
+            <header class="flashcards-header">
+                <button id="flashcards-back-btn" class="icon-button" title="Back to Preview">
+                     <!-- Make sure the icon path is correct -->
+                     <img src="../../icons/back-arrow.svg" alt="Back" />
+                </button>
+                <h2 id="flashcards-set-title">Set Title <span id="flashcards-set-count">(0)</span></h2>
+                <button id="flashcards-edit-btn" class="text-button" disabled style="display: none;">Edit</button> <!-- Start hidden and disabled -->
+            </header>
+            <main class="flashcards-main">
+                <!-- Add tabindex for keyboard focus if needed -->
+                <div id="flashcard-container" tabindex="-1">
+                    <div id="flashcard-outer">
+                        <div id="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <p id="flashcard-front-text">Loading...</p>
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                <p id="flashcard-back-text">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Behind -->
+                    <div id="flashcard-behind" class="flashcard-behind" style="display: none;">
+                        <p id="flashcard-behind-text"></p>
+                    </div>
+                </div>
+            </main>
+            <footer class="flashcards-footer">
+                <div class="flashcard-controls">
+                    <div id="control-left">KNOWN</div>
+                    <div id="control-info">0 / 0</div>
+                    <div id="control-right">FORGOT</div>
+                </div>
+                <!-- Quick View Area (Initially hidden) -->
+                <div id="quick-view-container">
+                    <h3>Copy card to...</h3>
+                    <ul id="quick-view-list"></ul>
+                </div>
+            </footer>
+        </div><!-- End #page-flashcards -->
+
+
+        <!-- Edit Page Structure -->
+        <div id="page-edit" class="page"> <!-- Start inactive -->
+            <header class="edit-header">
+                 <button id="edit-back-btn" class="text-button">Cancel</button>
+                 <button id="edit-save-btn" class="text-button">Save</button>
+            </header>
+            <textarea id="edit-textarea" placeholder="Set Title (First Line)
+
+---
+Question 1
+Answer 1
+---
+Question 2
+Answer 2
+---
+..." spellcheck="false"></textarea>
+        </div><!-- End #page-edit -->
+
+
+        <!-- Toast Message Area (Global) -->
+        <!-- Ensure this is styled and handled by utils.js -->
+        <div id="toast-message"></div>
+
+    </div> <!-- End #app-container -->
+
+    <!-- Load dependencies FIRST -->
+    <script src="../utils.js"></script>
+    <script src="../server.js"></script> <!-- Or however you load server communication -->
+    <!-- Load page-specific script LAST -->
+    <script src="script.js"></script>
+</body>
+</html>

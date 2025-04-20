@@ -1,0 +1,79 @@
+/* Search/style.css */
+
+body, html {
+    overflow: hidden; /* Prevent body scroll */
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+    padding: var(--padding-base);
+    gap: var(--spacing-base);
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--hover-bg); /* Separator line */
+}
+
+#search-results-input {
+    flex-grow: 1; /* Input takes most space */
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: var(--border-radius-base);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+}
+#search-results-input:focus {
+    box-shadow: 0 0 0 2px var(--primary-color); /* Focus indicator */
+}
+
+#search-results-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Allow results scrolling */
+    padding: var(--padding-base);
+}
+
+#search-results-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Reuse base .set-item styles (globally defined in base style.css) */
+/* Add specific overrides if needed */
+.set-item .set-message {
+     font-size: 0.8em; /* Slightly smaller message for search results */
+}
+
+
+#search-info { /* Container for loading/no results */
+    text-align: center;
+    color: var(--text-muted-color);
+    margin-top: var(--padding-base);
+    padding: var(--padding-base);
+}
+
+.loading-placeholder { /* Placeholder specific styles */
+     display: flex;
+     flex-direction: column;
+     gap: var(--spacing-base);
+}
+.loading-item {
+    height: calc(var(--thumbnail-size) + 2 * var(--spacing-base));
+    background-color: var(--hover-bg);
+    border-radius: var(--border-radius-base);
+    opacity: 0.5;
+    /* Optional: Add shimmer animation */
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-color: var(--hover-bg); }
+    50% { background-color: #3a3a3a; }
+    100% { background-color: var(--hover-bg); }
+}

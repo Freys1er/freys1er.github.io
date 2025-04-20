@@ -1,0 +1,165 @@
+/* --- Base & Fonts --- */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000;
+    color: #e0e0e0;
+    min-height: 100vh;
+    /* Background Texture */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23220000' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.poll-container {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.loading-placeholder {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-style: italic;
+}
+
+/* --- Poll Card Structure --- */
+.poll-card {
+    background: rgba(10, 10, 10, 0.6);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 49, 49, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 49, 49, 0.15);
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- Header (Keep existing styles) --- */
+.poll-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.user-info { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background-color: #333; object-fit: cover; }
+.username { font-weight: 600; font-size: 0.9em; color: #ffffff; }
+.timestamp { font-size: 0.8em; color: #888; }
+
+/* --- Frosted Glass Question Area (Keep existing styles) --- */
+.poll-question-container { margin-bottom: 25px; padding: 25px; border-radius: 12px; position: relative; overflow: hidden; background-color: rgba(30, 0, 0, 0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 49, 49, 0.2); }
+.poll-question { font-size: 1.4em; font-weight: 700; color: #ffffff; line-height: 1.4; margin: 0; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+
+/* --- Voting Options Container --- */
+.voting-options {
+    display: flex; /* Enable Flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to next line */
+    gap: 10px; /* Space between option elements */
+    margin-bottom: 25px;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically if they wrap */
+}
+
+/* --- Button Option Styling (Keep existing) --- */
+.vote-option-btn {
+    appearance: none; border: none; outline: none; font-family: inherit;
+    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 18px; /* Adjust padding */
+    border-radius: 25px; font-size: 0.95em; font-weight: 600; text-align: center;
+    cursor: pointer; border: 1px solid #444; transition: all 0.2s ease-in-out;
+    flex-grow: 0; /* Prevent buttons from stretching excessively */
+    flex-shrink: 0;
+}
+.vote-option-btn:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
+.vote-option-btn:active { background-color: #FF3131; border-color: #FF3131; color: #ffffff; transform: scale(0.98); }
+.vote-option-btn.selected { /* Style for selected state */
+     background-color: #FF3131;
+     border-color: #FF3131;
+     color: #ffffff;
+     cursor: default;
+}
+
+
+/* --- List/Dropdown (<select>) Styling --- */
+.vote-option-select {
+    appearance: none; /* Remove default arrow */
+    border: 1px solid #444;
+    outline: none;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    padding: 10px 30px 10px 15px; /* Space for custom arrow */
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e0e0e0'%3E%3Cpath d='M8 11.414l-4.95-4.95a1 1 0 0 1 1.414-1.414L8 8.586l3.536-3.536a1 1 0 0 1 1.414 1.414L8 11.414z'/%3E%3C/svg%3E"); /* Basic custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    min-width: 150px; /* Ensure dropdown has some width */
+    flex-grow: 1; /* Allow dropdown to take available space */
+}
+.vote-option-select:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
+.vote-option-select:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
+
+/* --- Date Input Styling --- */
+.vote-option-date {
+    appearance: none; border: 1px solid #444; outline: none; font-family: inherit;
+    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 15px;
+    border-radius: 25px; font-size: 0.95em; font-weight: 600; cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    min-width: 180px; /* Give date picker space */
+    text-align: center;
+    color-scheme: dark; /* Hint for native picker theme */
+    flex-grow: 1;
+}
+.vote-option-date:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
+.vote-option-date:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
+/* Attempt to style the calendar picker indicator (very limited) */
+.vote-option-date::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.8); /* Make dark indicator lighter */
+    cursor: pointer;
+}
+
+/* --- Number Input Styling --- */
+.vote-option-number {
+    appearance: textfield; /* Better base than default number */
+    border: 1px solid #444; outline: none; font-family: inherit;
+    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 15px;
+    border-radius: 25px; font-size: 0.95em; font-weight: 600; cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    max-width: 100px; /* Limit width */
+    text-align: center;
+    color-scheme: dark;
+}
+/* Hide default spinner arrows (optional) */
+.vote-option-number::-webkit-outer-spin-button,
+.vote-option-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.vote-option-number:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
+.vote-option-number:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
+
+
+/* --- Submit Button (for non-button types) --- */
+.vote-submit-btn {
+     appearance: none; border: none; outline: none; font-family: inherit;
+     background-color: #FF3131; /* Red submit button */
+     color: #ffffff;
+     padding: 10px 20px;
+     border-radius: 25px;
+     font-size: 0.9em;
+     font-weight: bold;
+     cursor: pointer;
+     transition: background-color 0.2s ease;
+     margin-left: 10px; /* Space from the input/select */
+     flex-shrink: 0; /* Don't let it shrink */
+ }
+ .vote-submit-btn:hover {
+     background-color: #e60000; /* Darker red */
+ }
+
+
+/* --- Action Buttons (Keep existing styles) --- */
+.poll-actions { display: flex; justify-content: flex-end; gap: 15px; padding-top: 15px; border-top: 1px solid #333; }
+.action-btn { appearance: none; outline: none; font-family: inherit; background-color: transparent; color: #999; padding: 6px 10px; border-radius: 15px; font-size: 0.85em; font-weight: 600; cursor: pointer; border: 1px solid #444; display: flex; align-items: center; gap: 5px; transition: all 0.2s ease-in-out; }
+.action-btn svg { fill: currentColor; }
+.action-btn:hover { color: #FF3131; border-color: rgba(255, 49, 49, 0.5); background-color: rgba(255, 49, 49, 0.1); }
+.action-btn:active { color: #ffffff; background-color: rgba(255, 49, 49, 0.3); transform: scale(0.98); }

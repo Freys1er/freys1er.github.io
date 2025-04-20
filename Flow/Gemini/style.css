@@ -1,0 +1,340 @@
+/* Basic Reset & Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 100px; /* Add padding to prevent footer overlap */
+}
+
+/* Main Content Container */
+.container {
+    background-color: #1e1e1e; /* Slightly lighter dark grey */
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6); /* Darker shadow */
+    border: 1px solid #333; /* Subtle border */
+    max-width: 500px;
+    width: 90%;
+    margin-bottom: 30px; /* Space before success message */
+}
+
+h1 {
+    /* color: #8ab4f8; */ /* Google Blue - Example Gemini Color */
+    color: #c58af9; /* A Gemini-like Purple */
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 25px;
+    color: #bdc1c6; /* Lighter grey for paragraph text */
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; /* Reduced margin */
+    border-radius: 6px;
+    border: 1px solid #444; /* Darker grey border */
+    background-color: #2a2a2e; /* Dark input background */
+    color: #e0e0e0; /* Light text */
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 80px; /* Adjusted min-height */
+    max-height: 200px;
+}
+
+textarea::placeholder {
+    color: #777; /* Grey placeholder */
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #121212; /* Dark text on light button */
+    /* Gemini-inspired gradient */
+    background: linear-gradient(45deg, #8ab4f8, #c58af9);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+button.disabled {
+    cursor: not-allowed;
+    filter: brightness(60%); /* Darken more for better contrast */
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
+}
+
+button:not(.disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(138, 180, 248, 0.3); /* Shadow color matching blue */
+}
+
+button:not(.disabled):active {
+    transform: translateY(0);
+    filter: brightness(90%);
+}
+
+/* Slider Styling */
+.slider-container {
+    margin: 20px 0 30px 0; /* Added top margin */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    width: 100%; /* Ensure container takes width for centering */
+}
+
+.slider-container label {
+    margin-right: 15px;
+    font-size: 1.5em; /* Make icon slightly larger */
+    color: #8ab4f8; /* Blue color for icon */
+}
+
+/* Style the range input track */
+input[type="range"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 60%; /* Adjust width as needed */
+    max-width: 250px;
+    height: 8px; /* Track height */
+    background: #444; /* Dark track background */
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Style the range input thumb (Chrome, Edge, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    background: #c58af9; /* Purple thumb */
+    border-radius: 50%; /* Make it round */
+    cursor: pointer;
+    border: 2px solid #1e1e1e; /* Border matching container bg */
+    margin-top: -6px; /* Adjust vertical centering */
+}
+
+/* Style the range input thumb (Firefox) */
+input[type="range"]::-moz-range-thumb {
+    width: 18px; /* Thumb width */
+    height: 18px; /* Thumb height */
+    background: #c58af9; /* Purple thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #1e1e1e;
+}
+
+.slider-container span {
+    margin-left: 15px;
+    min-width: 30px; /* Ensure space for 3 digits */
+    text-align: right;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker overlay */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    color: #fff;
+    backdrop-filter: blur(4px);
+}
+
+#loading-overlay p {
+    margin-top: 25px;
+    font-size: 1.2rem;
+    color: #e0e0e0; /* Match body text */
+}
+
+/* Gemini Loader Animation (Keep as is, colors are thematic) */
+.gemini-loader {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+.gemini-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: gemini-orbit 2s infinite ease-in-out;
+}
+.gemini-dot1 {
+    background-color: #4285F4; /* Google Blue */
+    top: 0; left: 50%; transform-origin: 50% 30px; animation-delay: -0.66s;
+}
+.gemini-dot2 {
+    background-color: #c58af9; /* Use theme purple */
+    top: 50%; left: 0; transform-origin: 30px 50%; animation-delay: -1.33s;
+}
+.gemini-dot3 {
+    background-color: #8ab4f8; /* Use theme blue */
+    top: 50%; left: 100%; transform-origin: -30px 50%;
+}
+@keyframes gemini-orbit {
+    0%, 100% { transform: rotate(0deg) translateX(30px) rotate(0deg); opacity: 1; }
+    50% { transform: rotate(180deg) translateX(30px) rotate(-180deg); opacity: 0.5; }
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 10px; /* Adjust position slightly */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa; /* Lighter grey for footer */
+    font-size: 0.8em; /* Slightly larger */
+    text-align: center;
+    width: 90%;
+    z-index: 5;
+}
+
+footer p {
+    margin-bottom: 5px; /* Reduced space */
+    font-size: 0.9em;
+    color: #888; /* Dimmer text */
+}
+footer a {
+    color: #8ab4f8; /* Blue links */
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Toast Message Styles */
+#toast-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background-color: #333; /* Darker background */
+    color: #e0e0e0; /* Light text */
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    z-index: 1100; /* Ensure above overlay */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease, visibility 0.4s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 90%;
+}
+#toast-message.visible { /* Keep as is */
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+#toast-message.error { /* Keep as is */
+    background-color: rgba(211, 47, 47, 0.95); color: white;
+}
+#toast-message.success { /* Keep as is */
+    background-color: rgba(56, 142, 60, 0.95); color: white;
+}
+#toast-message.info { /* Keep as is */
+    background-color: rgba(25, 118, 210, 0.95); color: white;
+}
+
+
+
+/* --- New Generation Success Area --- */
+#generation-success {
+    display: none; /* Hidden by default */
+    background-color: #1e1e1e;
+    padding: 20px 30px; /* Slightly reduced padding */
+    border-radius: 12px;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    max-width: 500px;
+    width: 90%;
+    margin-top: 30px;
+}
+
+/* Style the flashcard list */
+#flashcard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* Margin below list */
+    max-height: 250px; /* Limit height */
+    overflow-y: auto; /* Add scroll if needed */
+    border: 1px solid #333; /* Subtle border around list */
+    border-radius: 6px;
+    background-color: #171717; /* Slightly darker list background */
+}
+
+#flashcard-list li {
+    background-color: #2a2a2e;
+    margin: 8px; /* Margin around each item */
+    padding: 10px 15px;
+    border-radius: 4px;
+    border-left: 6px solid #8ab4f8; /* Blue accent border */
+    font-size: 0.9em;
+    color: #ccc; /* Slightly dimmer text for list items */
+    text-align: left; /* Align text left within list item */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(-10px); /* Start slightly shifted for animation */
+    animation: slideInFade 0.5s ease forwards; /* Apply animation */
+}
+
+/* Keyframes for list item animation */
+@keyframes slideInFade {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Style for the final success message (shown after list animation) */
+#generation-success p#success-message {
+    color: #e0e0e0;
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+#generation-success p#count-message {
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important; /* Use !important to override potential inline styles if needed */
+}
+
+
+#study-button {
+     /* Styles inherited from base button */
+     padding: 12px 35px;
+     /* Ensure it's inline-block or block to respect margins */
+     display: inline-block;
+}

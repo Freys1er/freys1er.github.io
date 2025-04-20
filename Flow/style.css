@@ -1,0 +1,493 @@
+/* style.css (Base Folder - Global + Home) */
+
+/* Basic Reset & Variables */
+:root {
+    --background-color: #000000;
+    --text-color: #FFFFFF;
+    --text-muted-color: #AAAAAA;
+    --primary-color: #4285f4;
+    --green-color: #4CAF50;
+    --red-color: #F44336;
+    --card-bg: #191919; /* Darker background for elements */
+    --flashcard-face-bg: #000000; /* Black for flashcard face (used in Preview) */
+    --hover-bg: #2e2e2e;
+    --padding-base: 15px;
+    --thumbnail-size: 50px;
+    --spacing-base: 10px;
+    --border-radius-base: 8px;
+    --font-family: 'Nunito', sans-serif;
+    --large-thumbnail-size: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevent scrolling on body */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overscroll-behavior: none; /* Prevent pull-to-refresh */
+    display: flex; /* Needed for centering loading */
+    justify-content: center; /* Needed for centering loading */
+    align-items: center; /* Needed for centering loading */
+}
+
+#app-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 600px; /* Optional: constrain max width for app feel */
+    margin: 0 auto;
+    overflow: hidden; /* Manage scrolling within sections */
+    background-color: var(--background-color); /* Ensure container has bg */
+    display: flex; /* Use flex for main layout */
+    flex-direction: column;
+}
+
+/* Common Page structure (apply to page containers in each HTML) */
+.page-content {
+    flex-grow: 1; /* Allow content to fill space */
+    overflow-y: auto; /* Allow scrolling within the content area */
+    padding: var(--padding-base);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--padding-base) * 1.5); /* Spacing between sections */
+}
+
+/* --- Loading Spinner (Global) --- */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Fill container */
+    width: 100%;
+    position: absolute; /* Overlay content */
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+    z-index: 100; /* Above other content */
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.spinner-container.visible {
+    visibility: visible;
+    opacity: 1;
+}
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid var(--text-color);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--padding-base);
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Toast Message (Global) --- */
+#toast-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150%); /* Initially hidden below */
+    background-color: rgba(40, 40, 40, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 1000; /* Above everything */
+    opacity: 0;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    text-align: center;
+}
+#toast-message.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+#toast-message.success { background-color: rgba(76, 175, 80, 0.9); } /* Green */
+#toast-message.error { background-color: rgba(244, 67, 54, 0.9); } /* Red */
+
+
+/* --- Common Button Styles --- */
+.icon-button, .text-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px; /* Add some padding for easier clicking */
+    font-size: 1em;
+    vertical-align: middle; /* Align icons/text */
+    display: inline-flex; /* Use flex for alignment */
+    align-items: center;
+    justify-content: center;
+}
+.icon-button img {
+    width: 28px; /* Consistent icon size */
+    height: 28px;
+    display: block;
+}
+.text-button {
+    font-weight: 500;
+    padding: 8px 12px; /* More padding for text buttons */
+    border-radius: var(--border-radius-base);
+    transition: background-color 0.2s ease;
+}
+.text-button:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Common list item style */
+.set-item {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: var(--spacing-base);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: var(--spacing-base); /* Use margin instead of gap for broader compatibility */
+}
+.set-item:last-child {
+    margin-bottom: 0;
+}
+.set-item:hover {
+    background-color: var(--hover-bg);
+}
+.set-thumbnail {
+    width: var(--thumbnail-size);
+    height: var(--thumbnail-size);
+    min-width: var(--thumbnail-size); /* Prevent shrinking */
+    border-radius: 4px;
+    margin-right: var(--padding-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    flex-shrink: 0;
+    color: black; /* Set by JS based on contrast */
+    overflow: hidden; /* Ensure content doesn't overflow */
+    text-align: center;
+}
+.set-details {
+    flex-grow: 1;
+    overflow: hidden;
+}
+.set-title {
+    font-size: 1em;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+    color: var(--text-color);
+}
+.set-message {
+    font-size: 0.85em;
+    color: var(--text-muted-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Common quick item style */
+.quick-item {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: var(--spacing-base);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: var(--spacing-base); /* Use margin instead of gap for broader compatibility */
+}
+.quick-item:last-child {
+    margin-bottom: 0;
+}
+.quick-item:hover {
+    background-color: var(--hover-bg);
+}
+.quick-thumbnail {
+    width: var(--large-thumbnail-size);
+    height: var(--large-thumbnail-size);
+    min-width: var(--large-thumbnail-size); /* Prevent shrinking */
+    border-radius: 4px;
+    margin-right: var(--padding-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    flex-shrink: 0;
+    color: black; /* Set by JS based on contrast */
+    overflow: hidden; /* Ensure content doesn't overflow */
+    text-align: center;
+}
+.quick-details {
+    flex-grow: 1;
+    overflow: hidden;
+}
+.quick-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+    color: var(--text-color);
+}
+.quick-message {
+    font-size: 1em;
+    color: var(--text-muted-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+/* Utility class */
+.hidden {
+    display: none !important;
+}
+
+
+/* --- Home Page Specific Styles (/index.html) --- */
+.home-header { /* Renamed from flow-header for clarity */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    padding: var(--padding-base) var(--padding-base) 0; /* Padding top/sides */
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.greeting-section h1 {
+    font-size: 1.7em; /* Slightly smaller */
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.greeting-section p {
+    color: var(--text-muted-color);
+    font-size: 1em;
+}
+
+.account-section #account-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    border: 1px solid var(--hover-bg); /* Subtle border */
+}
+
+.account-section #account-icon:hover {
+    opacity: 1;
+    border-color: var(--text-muted-color);
+}
+
+.home-search-container { /* Renamed */
+     padding: var(--padding-base); /* Match header padding */
+     flex-shrink: 0;
+}
+.home-search-container input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: none; /* Removed border */
+    border-radius: var(--border-radius-base);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+}
+.home-search-container input::placeholder {
+    color: var(--text-muted-color);
+}
+.home-search-container input:focus {
+    box-shadow: 0 0 0 2px var(--primary-color); /* Focus indicator */
+}
+
+.home-content { /* Container for streak and sets */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 var(--padding-base) var(--padding-base); /* Pad sides/bottom */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--padding-base) * 1.5);
+}
+
+.streak-container h2,
+.sets-container h2 {
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-base);
+    color: var(--text-muted-color);
+    padding-top: var(--spacing-base); /* Add space above headings */
+}
+
+.streak-circles {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: var(--spacing-base);
+}
+
+.streak-day {
+    text-align: center;
+}
+
+.streak-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: #333; /* Darker grey for empty */
+    color: var(--text-color); /* White text */
+    font-weight: bold;
+    font-size: 0.9em;
+    overflow: hidden;
+}
+.streak-progress-ring {
+    position: absolute;
+    top: -1px; left: -1px;
+    width: calc(100% + 2px); height: calc(100% + 2px);
+}
+.streak-progress-ring circle {
+    transition: stroke-dasharray 0.3s ease; /* Animate progress */
+}
+/* SVG Circle setup */
+.streak-progress-ring .ring-bg {
+    fill: transparent;
+    stroke: #444; /* Slightly lighter background ring */
+    stroke-width: 2;
+}
+.streak-progress-ring .ring-progress {
+    fill: transparent;
+    stroke: var(--green-color); /* Progress color */
+    stroke-width: 2.5; /* Slightly thicker */
+    stroke-linecap: round; /* Rounded ends */
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-dasharray: 100 100; /* Full circle, will be set by JS */
+    stroke-dashoffset: 100; /* Start empty, set by JS */
+}
+
+/* Streak circle states */
+.streak-circle.complete {
+    background-color: var(--green-color);
+    color: var(--text-color);
+}
+.streak-circle.complete .ring-progress {
+    stroke: var(--green-color); /* Ensure stroke matches bg */
+    stroke-dashoffset: 0; /* Full */
+}
+.streak-circle.in-progress .ring-progress {
+    stroke: var(--green-color);
+}
+.streak-circle.empty {
+    background-color: #333;
+    color: var(--text-muted-color);
+}
+.streak-circle.empty .ring-progress {
+     stroke-dashoffset: 100; /* Empty */
+     stroke: transparent; /* Hide progress stroke */
+}
+.streak-circle.empty .ring-bg {
+     stroke: transparent; /* Hide background stroke for empty */
+}
+
+
+.streak-day span {
+    font-size: 0.8em;
+    color: var(--text-muted-color);
+}
+
+.sets-container {
+    flex-grow: 1; /* Allow sets list to take space if needed */
+}
+
+#recent-sets-list {
+    list-style: none;
+    padding: 0;
+}
+
+.create-new-item .set-thumbnail {
+    background-color: var(--hover-bg);
+    color: var(--text-muted-color);
+    border: 1px dashed var(--text-muted-color);
+}
+.create-new-item:hover .set-thumbnail {
+     background-color: #444;
+     color: var(--text-color);
+     border-color: var(--text-color);
+}
+
+.secondary-nav {
+    display: flex;
+    border-bottom: 1px solid var(--hover-bg);
+    background-color: var(--background-color);
+    flex-shrink: 0;
+}
+
+.secondary-nav .tab-button {
+    padding: 12px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    font-size: 0.95em;
+    color: var(--text-muted-color);
+    flex-grow: 1;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    font-weight: 500;
+}
+
+.secondary-nav .tab-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.secondary-nav .tab-button.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.tab-content-section {
+    display: none;
+    /* Hide inactive tabs */
+}
+
+.tab-content-section.active {
+    display: block;
+    /* Show active tab */
+    animation: fadeIn 0.3s ease;
+    /* Reuse fade */
+}
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Flow Flashcards - Home</title>
+    <link rel="stylesheet" href="style.css"> <!-- Global styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Console Ninja (optional) -->
+    <script src="//console.re/connector.js" data-channel="hive-flow" id="consolerescript"></script>
+</head>
+
+<body>
+    <div id="app-container">
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="spinner-container">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Home (Flow) Page Content -->
+        <header class="home-header">
+            <div class="greeting-section">
+                <h1 id="home-greeting">Good morning!</h1>
+                <p id="home-message">Ready for the day?</p>
+            </div>
+            <div class="account-section">
+                <!-- Account Icon - Link or Button -->
+                <button id="account-button" class="icon-button" title="Account Info">
+                    <img id="account-icon" src="../icons/account.svg" alt="Account" />
+                </button>
+            </div>
+        </header>
+
+        <div class="home-search-container">
+            <input type="search" id="home-search-input" placeholder="Search for sets...">
+        </div>
+
+        <div class="home-content">
+            <div class="streak-container">
+                <h2>Weekly Streak</h2>
+                <div id="streak-circles" class="streak-circles">
+                    <!-- Streak circles will be generated here -->
+                </div>
+            </div>
+
+            <nav class="secondary-nav">
+                <button class="tab-button active" data-tab="foryou">For you</button>
+                <button class="tab-button" data-tab="recent">Recent</button>
+                <!--
+                <button class="tab-button" data-tab="liked">Liked</button>
+                -->
+            </nav>
+
+
+            <div class="tab-content">
+                <div class="tab-content-section" id="recent-content">
+                    <ul id="recent-sets-list">
+                        <!-- "Create New" and recent sets will be generated here -->
+                    </ul>
+                </div>
+
+                <div class="tab-content-section" id="liked-content">
+                    <ul id="liked-sets-list">
+                        <!-- "Create New" and recent sets will be generated here -->
+                    </ul>
+                </div>
+
+                <div class="tab-content-section active" id="foryou-content">
+                    <ul id="foryou-sets-list">
+                        <!-- Quick study 'top 100'-->
+                        <li class="quick-item" data-action="top-100">
+                            <div class="quick-thumbnail" style="background-color: #16a6d2; color: #bbbbbb;">⚡
+                            </div>
+                            <div class="quick-details">
+                                <div class="quick-title">Top 100</div>
+                                <div class="quick-message">Study your top 100 flashcards</div>
+                            </div>
+                        </li>
+
+
+                        <!-- Quick study 'Google Gemini'-->
+                        <li class="quick-item" data-action="google-gemini">
+                            <div class="quick-thumbnail" style="background-color: #676767;">
+                                <img src="../icons/google-gemini-icon.svg" alt="Google Gemini Icon"
+                                    style="width: 70%; height: 70%;">
+                            </div>
+                            <div class="quick-details">
+                                <div class="quick-title">Google Gemini</div>
+                                <div class="quick-message">Generate flashcards with AI</div>
+                            </div>
+                        </li>
+
+                        <!-- Statistics-->
+                        <li class="quick-item" data-action="statistics">
+                            <div class="quick-thumbnail" style="background-color: #a0a0a0;">
+                                <img src="../icons/stats.svg" alt="Stats Icon" style="width: 70%; height: 70%;">
+                            </div>
+                            <div class="quick-details">
+                                <div class="quick-title">Statistics</div>
+                                <div class="quick-message">Usage and learning stats</div>
+                            </div>
+                        </li>
+
+                        <!-- Help/questions-->
+                        <li class="quick-item" data-action="help">
+                            <div class="quick-thumbnail" style="background-color: #676767;">
+                                <img src="../icons/people.svg" alt="Help Icon" style="width: 70%; height: 70%;">
+                            </div>
+                            <div class="quick-details">
+                                <div class="quick-title">Questions and Help</div>
+                                <div class="quick-message">Contact the team</div>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Message Area (Global) -->
+        <div id="toast-message"></div>
+
+    </div>
+
+    <script src="utils.js"></script> <!-- Shared utilities -->
+    <script src="server.js"></script> <!-- Server functions -->
+    <script src="script.js"></script> <!-- Home page specific script -->
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+/* Profile/style.css */
+
+/* Keep body, html, #app-container as they are */
+
+/* ../style.css */
+
+:root {
+    /* Color Palette */
+    --primary-color: #007bff;
+    /* Example Blue */
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --red-color: #e53935;
+    /* Explicit red for logout */
+
+    /* Backgrounds */
+    --background-color: #000000;
+
+    /* Text */
+    --text-color: #ffffff;
+    /* Primary text */
+    --text-muted-color: #acacac;
+    /* Secondary/muted text */
+
+    /* Spacing & Sizing */
+    --padding-base: 15px;
+    --padding-small: 15px;
+    --spacing-base: 10px;
+    --spacing-small: 8px;
+
+    /* Borders */
+    --border-radius-base: 8px;
+    --border-color: #dee2e6;
+
+    /* Other common variables... */
+}
+
+/* Other global styles for body, buttons, inputs etc. */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    height: 100vh;
+    /* Ensure body takes full height */
+}
+
+/* ... more global styles ... */
+
+body,
+html {
+    overflow: hidden;
+    /* Prevent body scroll */
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Use viewport height ideally */
+    min-height: 100vh;
+    /* Ensure it covers viewport */
+}
+
+
+/* --- MODIFIED HEADER STYLES --- */
+
+.profile-header {
+    /* Establish positioning context for absolute children */
+    position: relative;
+    display: flex;
+    /* Center the main content (.user-info) horizontally */
+    justify-content: center;
+    /* Center items vertically */
+    align-items: center;
+    padding: var(--padding-base);
+    flex-shrink: 0;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--hover-bg);
+    /* Give it a minimum height if content is small */
+    min-height: 110px;
+    /* Adjust as needed based on content */
+}
+
+#profile-back-btn {
+    /* Position absolutely relative to the .profile-header */
+    position: absolute;
+    top: 50%;
+    /* Center vertically */
+    left: var(--padding-base);
+    /* Position from the left edge */
+    transform: translateY(-50%);
+    /* Fine-tune vertical centering */
+    /* Remove flex-related margins */
+    margin-right: 0;
+}
+
+/* Style the back button image */
+#profile-back-btn img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    /* Prevents extra space below image */
+}
+
+.profile-header .user-info {
+    /* This div is now the flex item being centered by justify-content: center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Horizontally center items *within* this user-info block */
+    text-align: center;
+    /* Center text within h2 and h6 */
+    /* No absolute positioning needed here, it's centered by the parent flexbox */
+}
+
+.profile-header .user-info img.profile-pic {
+    width: 50px;
+    /* Or make slightly larger if desired */
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Make it circular like TikTok */
+    margin-bottom: 8px;
+}
+
+.profile-header .user-info h2 {
+    margin: 4px 0 0 0;
+    font-size: 1.4em;
+    /* Adjust size as needed */
+    color: var(--text-color);
+    font-weight: 700;
+    /* Bolder username */
+}
+
+.profile-header .user-info h6 {
+    margin: 2px 0 0 0;
+    /* Slightly less top margin */
+    font-size: 0.9em;
+    color: var(--text-muted-color);
+    font-weight: normal;
+}
+
+/* --- END OF MODIFIED HEADER STYLES --- */
+
+
+/* Tab Navigation (Keep as is) */
+.secondary-nav {
+    display: flex;
+    border-bottom: 1px solid var(--hover-bg);
+    background-color: var(--background-color);
+    flex-shrink: 0;
+}
+
+.secondary-nav .tab-button {
+    padding: 12px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    font-size: 0.95em;
+    color: var(--text-muted-color);
+    flex-grow: 1;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    font-weight: 500;
+}
+
+.secondary-nav .tab-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.secondary-nav .tab-button.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Tab Content Area (Keep as is) */
+.tab-content {
+    flex-grow: 1;
+    /* Take remaining vertical space */
+    padding: var(--padding-base);
+    overflow-y: auto;
+    /* Allow scrolling if content overflows */
+    background-color: var(--background-color);
+    /* Add explicit height calculation if overflow issues persist */
+    /* height: calc(100vh - height-of-header - height-of-nav); */
+}
+
+/* Rest of the CSS (tab content, set list, account details, footer, etc.) remains the same */
+/* ... (keep all other styles from your original file) ... */
+
+.tab-content-section {
+    display: none;
+    /* Hide inactive tabs */
+}
+
+.tab-content-section.active {
+    display: block;
+    /* Show active tab */
+    animation: fadeIn 0.3s ease;
+    /* Reuse fade */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Set List Styling */
+.set-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Uses global .set-item styles */
+.set-list .set-item {
+    border: 1px solid var(--hover-bg);
+    /* Add border for definition */
+    background-color: var(--card-bg);
+    /* Slightly different bg */
+    /* Inherits display:flex from global .set-item likely */
+    padding: var(--padding-small) var(--padding-base);
+    margin-bottom: var(--spacing-base);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-items: center;
+    /* Vertically align items in the set row */
+}
+
+.set-list .set-item:hover {
+    background-color: var(--hover-bg);
+}
+
+
+.set-list .set-details {
+    display: flex;
+    /* Use flex for name/details layout */
+    flex-direction: column;
+    /* Stack name and details */
+    flex-grow: 1;
+    min-width: 0;
+    /* Allow truncation */
+    margin-right: var(--spacing-base);
+    /* Space before likes */
+}
+
+.set-list .set-name {
+    font-weight: bold;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    /* Space between name and details */
+}
+
+.set-list .set-sub-details {
+    /* Renamed from set-details inside li */
+    font-size: 0.8em;
+    color: var(--text-muted-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.set-likes {
+    display: flex;
+    /* Enable flexbox for layout control */
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Align items to the left */
+    font-size: 0.8em;
+    /* Adjust text size as needed */
+    color: var(--text-muted-color);
+    /* Use muted color for likes text */
+}
+
+.set-likes::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: 8px;
+    /* Space above the icon */
+    margin-bottom: 0px;
+    /* Add space between the image and text */
+    opacity: 0.5;
+    background-image: url('../../icons/heart.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.set-likes:hover::before {
+    opacity: 2; /* Make the icon fully opaque on hover (lighter) */
+}
+
+/* Account Details Styling */
+.detail-item {
+    margin-bottom: var(--spacing-base);
+    padding: var(--spacing-base) 0;
+    border-bottom: 1px dotted var(--hover-bg);
+    /* Subtle separator */
+    font-size: 1em;
+    display: flex;
+    /* Use flex for label/value alignment */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item strong {
+    color: var(--text-muted-color);
+    margin-right: var(--spacing-base);
+    flex-shrink: 0;
+    /* Prevent label shrinking */
+}
+
+.detail-item span {
+    color: var(--text-color);
+    text-align: right;
+    /* Align value to the right */
+    word-break: break-all;
+    /* Break long values */
+}
+
+
+/* Footer (Optional) */
+.profile-footer {
+    padding: var(--padding-base);
+    background-color: var(--background-color);
+    border-top: 1px solid var(--hover-bg);
+    text-align: center;
+    color: var(--text-muted-color);
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+
+/* Add some basic styles for .set-item if not defined globally */
+/* Add this only if you don't have global .set-item styles */
+
+.set-item {
+    display: flex;
+    align-items: center;
+    padding: var(--padding-small) var(--padding-base);
+    margin-bottom: var(--spacing-base);
+    border-radius: var(--border-radius-base);
+    background-color: var(--card-bg);
+    border: 1px solid var(--hover-bg);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.set-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.input-field {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    padding: var(--padding-small);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1em;
+
+    /* Space between fields */
+    transition: border-color 0.2s ease;
+}
+
+.seperator {
+    width: 95%;
+    height: 80%;
+    border-radius: var(--border-radius-base);
+    border-bottom: 1px solid var(--hover-bg);
+    background-color: var(--card-bg);
+    margin: var(--padding-base);
+
+    text-align: center;
+}

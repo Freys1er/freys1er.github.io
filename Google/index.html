@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hive</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+
+<body>
+    <!-- Sign-in container remains the same -->
+    <div id="signin-container">
+        <div>
+            <p class="title">Welcome to the Hive</p>
+            <p class="instructions">Authenticate with Google</p>
+            <div id="g_id_onload"
+                data-client_id="490934668566-dpcfvk9p5kfpk44ko8v1gl3d5i9f83qr.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse" data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+            </div>
+        </div>
+    </div>
+
+    <!-- Username Prompt Container (initially hidden) -->
+    <div id="username-prompt-overlay" class="hidden">
+        <div id="username-prompt-box">
+            <h2>Welcome to the Hive.</h2>
+            <p>Please choose a username for your Hive account.</p>
+            <p id="username-error" class="error-message"></p>
+            <input type="text" id="username-input" placeholder="Enter username" required>
+            <button id="submit-username-button">Enter</button>
+        </div>
+    </div>
+
+
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
