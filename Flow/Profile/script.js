@@ -64,8 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fetchProfileData(profileUserId);
             } else {
                 showError("User ID not specified and user not logged in.");
-                // Redirect?
-                //setTimeout(() => { safeReplace("Google/?redirect=Flow/Profile"); }, 3000);
+                safeReplace("Google/?redirect=Flow/Profile");
             }
         } else {
             // Load profile for the userId specified in the URL

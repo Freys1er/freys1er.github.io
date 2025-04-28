@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Card Animation</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add this line to load the Google Identity Services library -->
+</head>
+
+<body>
+    <div class="animation-container">
+        <!-- The Gift Card -->
+        <div class="gift-card">
+            <img src="../../icons/hive.svg" alt="Hive Logo">
+        </div>
+
+        <!-- Details Container - Content will be set by JS -->
+        <div class="card-details">
+            <p id="detail-type"></p> <!-- Empty -->
+            <p id="detail-duration"></p> <!-- Empty -->
+            <p id="detail-from"></p> <!-- Empty -->
+            <p id="redeem-code-error" class="error-message" style="color: rgb(255, 0, 0);"></p>
+
+        </div>
+
+
+        <div class="accept-button">
+            <div id="g_id_onload"
+                data-client_id="490934668566-dpcfvk9p5kfpk44ko8v1gl3d5i9f83qr.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse" data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="../server.js"></script>
+    <script src="../utils.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
