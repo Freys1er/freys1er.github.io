@@ -3,18 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Voting Section</title>
+    <title>Reputation Voting</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Sign In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Reputation Vote</h1>
+            <div id="auth-status">
+                <!-- Login/Logout button will appear here -->
+            </div>
+        </header>
 
-    <!-- Container for all polls -->
-    <div class="poll-container" id="poll-container">
-        <!-- Poll cards will be injected here by JavaScript -->
-         <div class="loading-placeholder">Loading polls...</div>
+        <main>
+            <!-- Login Section -->
+            <section id="login-section" class="page-section">
+                <h2>Sign In</h2>
+                <p>Please sign in with your Google Account to use the app.</p>
+                <!-- Google Sign In Button Container -->
+                <div id="g_id_onload"
+                     data-client_id="490934668566-dpcfvk9p5kfpk44ko8v1gl3d5i9f83qr.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse"
+                     data-auto_select="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="filled_black"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+            </section>
+
+            <!-- Home Section -->
+            <section id="home-section" class="page-section" style="display: none;">
+                <h2>Home - People</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search users by name...">
+                    <button id="search-button">Search</button>
+                    <select id="sort-users-select" style="display: none;"> <!-- Hide sort for now -->
+                       <option value="name">Sort by Name</option>
+                       <option value="trending">Sort by Score (Trending)</option>
+                    </select>
+                </div>
+                <div id="user-list-container">
+                    <p class="loading">Loading users...</p>
+                    <ul id="user-list"></ul>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="page-section" style="display: none;">
+                <button id="back-to-home" class="back-button">< Back to Home</button>
+                <div id="profile-info">
+                     <p class="loading">Loading profile...</p>
+                    <!-- Profile details here -->
+                </div>
+                <hr>
+                <h3>Votes Received</h3>
+                 <div class="sort-options">
+                     <label for="sort-votes-select">Sort Votes:</label>
+                    <select id="sort-votes-select">
+                       <option value="recent">Most Recent</option>
+                       <option value="trending">Most Liked (Trending)</option>
+                    </select>
+                </div>
+                <div id="votes-list-container">
+                    <p class="loading">Loading votes...</p>
+                    <ul id="votes-list"></ul>
+                </div>
+                <div id="vote-action-container">
+                   <!-- Voting form or button here -->
+                </div>
+            </section>
+
+             <!-- Error Message Area -->
+            <div id="error-message" class="error" style="display: none;"></div>
+        </main>
     </div>
 
     <script src="script.js"></script>

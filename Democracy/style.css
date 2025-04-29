@@ -1,165 +1,368 @@
-/* --- Base & Fonts --- */
+:root {
+    --bg-color: #000000;
+    --text-color: #eeeeee;
+    --primary-color: #4CAF50; /* Greenish accent */
+    --secondary-color: #333333;
+    --border-color: #444444;
+    --link-color: #64b5f6; /* Light blue for links */
+    --error-color: #f44336; /* Red for errors */
+
+    --score-low: #f44336; /* Red */
+    --score-mid-low: #ff9800; /* Orange */
+    --score-mid: #ffeb3b; /* Yellow */
+    --score-mid-high: #8bc34a; /* Light Green */
+    --score-high: #4CAF50; /* Green */
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif;
     margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
     padding: 20px;
-    background-color: #000000;
-    color: #e0e0e0;
-    min-height: 100vh;
-    /* Background Texture */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23220000' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.poll-container {
-    max-width: 500px;
-    margin: 40px auto;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.loading-placeholder {
-    text-align: center;
-    padding: 40px;
-    color: #888;
-    font-style: italic;
+header h1 {
+    margin: 0;
+    color: var(--primary-color);
 }
 
-/* --- Poll Card Structure --- */
-.poll-card {
-    background: rgba(10, 10, 10, 0.6);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(255, 49, 49, 0.3);
-    box-shadow: 0 4px 20px rgba(255, 49, 49, 0.15);
-    overflow: hidden;
-    position: relative;
-}
-
-/* --- Header (Keep existing styles) --- */
-.poll-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.user-info { display: flex; align-items: center; gap: 10px; }
-.avatar { width: 30px; height: 30px; border-radius: 50%; background-color: #333; object-fit: cover; }
-.username { font-weight: 600; font-size: 0.9em; color: #ffffff; }
-.timestamp { font-size: 0.8em; color: #888; }
-
-/* --- Frosted Glass Question Area (Keep existing styles) --- */
-.poll-question-container { margin-bottom: 25px; padding: 25px; border-radius: 12px; position: relative; overflow: hidden; background-color: rgba(30, 0, 0, 0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 49, 49, 0.2); }
-.poll-question { font-size: 1.4em; font-weight: 700; color: #ffffff; line-height: 1.4; margin: 0; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
-
-/* --- Voting Options Container --- */
-.voting-options {
-    display: flex; /* Enable Flexbox */
-    flex-wrap: wrap; /* Allow items to wrap to next line */
-    gap: 10px; /* Space between option elements */
-    margin-bottom: 25px;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Align items vertically if they wrap */
-}
-
-/* --- Button Option Styling (Keep existing) --- */
-.vote-option-btn {
-    appearance: none; border: none; outline: none; font-family: inherit;
-    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 18px; /* Adjust padding */
-    border-radius: 25px; font-size: 0.95em; font-weight: 600; text-align: center;
-    cursor: pointer; border: 1px solid #444; transition: all 0.2s ease-in-out;
-    flex-grow: 0; /* Prevent buttons from stretching excessively */
-    flex-shrink: 0;
-}
-.vote-option-btn:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
-.vote-option-btn:active { background-color: #FF3131; border-color: #FF3131; color: #ffffff; transform: scale(0.98); }
-.vote-option-btn.selected { /* Style for selected state */
-     background-color: #FF3131;
-     border-color: #FF3131;
-     color: #ffffff;
-     cursor: default;
-}
-
-
-/* --- List/Dropdown (<select>) Styling --- */
-.vote-option-select {
-    appearance: none; /* Remove default arrow */
-    border: 1px solid #444;
-    outline: none;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    padding: 10px 30px 10px 15px; /* Space for custom arrow */
-    border-radius: 25px;
-    font-size: 0.95em;
-    font-weight: 600;
+#auth-status button,
+button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e0e0e0'%3E%3Cpath d='M8 11.414l-4.95-4.95a1 1 0 0 1 1.414-1.414L8 8.586l3.536-3.536a1 1 0 0 1 1.414 1.414L8 11.414z'/%3E%3C/svg%3E"); /* Basic custom arrow */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
-    min-width: 150px; /* Ensure dropdown has some width */
-    flex-grow: 1; /* Allow dropdown to take available space */
+    font-weight: bold;
+    transition: background-color 0.2s ease;
 }
-.vote-option-select:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
-.vote-option-select:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
 
-/* --- Date Input Styling --- */
-.vote-option-date {
-    appearance: none; border: 1px solid #444; outline: none; font-family: inherit;
-    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 15px;
-    border-radius: 25px; font-size: 0.95em; font-weight: 600; cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    min-width: 180px; /* Give date picker space */
+#auth-status button:hover,
+button:hover {
+    background-color: #388e3c; /* Darker green */
+}
+
+.back-button {
+     background-color: #555;
+     margin-bottom: 15px;
+}
+.back-button:hover {
+     background-color: #777;
+}
+
+
+main {
+    padding: 0 0;
+}
+
+.page-section {
+    background-color: #000000;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.page-section h2, .page-section h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* --- Login --- */
+#login-section {
     text-align: center;
-    color-scheme: dark; /* Hint for native picker theme */
+}
+#g_id_onload { margin-bottom: 15px; } /* spacing */
+
+
+/* --- Home / User List --- */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+}
+
+.search-bar button, .search-bar select {
+     padding: 8px 12px;
+     background-color: #555;
+     color: var(--text-color);
+     border: 1px solid var(--border-color);
+     border-radius: 4px;
+     cursor: pointer;
+}
+.search-bar select {
+    appearance: none; /* For custom arrow later if needed */
+}
+
+#user-list {
+    list-style: none;
+    padding: 0;
+}
+
+#user-list li {
+    background-color: var(--secondary-color);
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-list li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    flex-grow: 1;
+    margin-right: 15px; /* Space before score */
+}
+#user-list li a:hover {
+    text-decoration: underline;
+}
+
+.score-display {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px; /* Pill shape */
+    font-size: 0.9em;
+    min-width: 40px; /* Ensure consistent width */
+    text-align: center;
+    color: #000; /* Black text on colored background */
+}
+
+/* --- Profile --- */
+#profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Wrap on smaller screens */
+}
+
+#profile-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+}
+
+#profile-info .profile-details h2 {
+    margin: 0 0 5px 0;
+    color: var(--text-color); /* Regular text color for name */
+    border: none; /* Remove border from h2 here */
+}
+
+#profile-info .profile-details p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.profile-score {
+     font-weight: bold;
+     font-size: 1.5em; /* Make score prominent */
+     margin-left: auto; /* Push score to the right */
+}
+
+.sort-options {
+    margin-bottom: 15px;
+    text-align: right;
+}
+.sort-options label {
+    margin-right: 5px;
+}
+.sort-options select {
+     padding: 5px 8px;
+     background-color: #555;
+     color: var(--text-color);
+     border: 1px solid var(--border-color);
+     border-radius: 4px;
+}
+
+#votes-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+#votes-list li {
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.vote-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.vote-header img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.vote-header strong { /* Voter name */
     flex-grow: 1;
 }
-.vote-option-date:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
-.vote-option-date:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
-/* Attempt to style the calendar picker indicator (very limited) */
-.vote-option-date::-webkit-calendar-picker-indicator {
-    filter: invert(1) brightness(0.8); /* Make dark indicator lighter */
+.vote-header .vote-score {
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.vote-header .vote-timestamp {
+    font-size: 0.8em;
+    color: #aaa;
+    margin-left: auto; /* Push timestamp and likes to the right */
+}
+.vote-comment {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding-left: 40px; /* Indent comment */
+    white-space: pre-wrap; /* Preserve line breaks in comments */
+    word-wrap: break-word;
+}
+.vote-actions {
+    text-align: right;
+    padding-left: 40px; /* Align with comment */
+}
+.like-button {
+    background: none;
+    border: 1px solid #666;
+    color: #ccc;
+    padding: 3px 8px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+.like-button:hover {
+    background-color: #444;
+}
+.like-button .likes-count {
+    margin-left: 4px;
+    font-weight: bold;
 }
 
-/* --- Number Input Styling --- */
-.vote-option-number {
-    appearance: textfield; /* Better base than default number */
-    border: 1px solid #444; outline: none; font-family: inherit;
-    background-color: #1a1a1a; color: #e0e0e0; padding: 10px 15px;
-    border-radius: 25px; font-size: 0.95em; font-weight: 600; cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    max-width: 100px; /* Limit width */
+#vote-action-container {
+    margin-top: px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+#vote-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#vote-form legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: var(--primary-color);
+}
+
+#vote-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#vote-form .score-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center; /* Center radio buttons */
+}
+
+#vote-form input[type="radio"] {
+   margin-right: 3px;
+}
+
+#vote-form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+    margin-bottom: 15px;
+}
+
+#vote-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+
+/* --- Score Coloring --- */
+.score-0 { background-color: var(--score-low); }
+.score-1 { background-color: var(--score-mid-low); }
+.score-2 { background-color: var(--score-mid); }
+.score-3 { background-color: var(--score-mid); } /* Often mid-range */
+.score-4 { background-color: var(--score-mid-high); }
+.score-5 { background-color: var(--score-high); }
+
+/* --- Utility --- */
+.loading {
     text-align: center;
-    color-scheme: dark;
+    padding: 20px;
+    color: #aaa;
 }
-/* Hide default spinner arrows (optional) */
-.vote-option-number::-webkit-outer-spin-button,
-.vote-option-number::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+.error {
+    background-color: var(--error-color);
+    color: white;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 4px;
+    text-align: center;
 }
-.vote-option-number:hover { background-color: #2a2a2a; border-color: rgba(255, 49, 49, 0.7); color: #ffffff; }
-.vote-option-number:focus { border-color: rgba(255, 49, 49, 0.7); box-shadow: 0 0 5px rgba(255, 49, 49, 0.3); }
 
-
-/* --- Submit Button (for non-button types) --- */
-.vote-submit-btn {
-     appearance: none; border: none; outline: none; font-family: inherit;
-     background-color: #FF3131; /* Red submit button */
-     color: #ffffff;
-     padding: 10px 20px;
-     border-radius: 25px;
-     font-size: 0.9em;
-     font-weight: bold;
-     cursor: pointer;
-     transition: background-color 0.2s ease;
-     margin-left: 10px; /* Space from the input/select */
-     flex-shrink: 0; /* Don't let it shrink */
- }
- .vote-submit-btn:hover {
-     background-color: #e60000; /* Darker red */
- }
-
-
-/* --- Action Buttons (Keep existing styles) --- */
-.poll-actions { display: flex; justify-content: flex-end; gap: 15px; padding-top: 15px; border-top: 1px solid #333; }
-.action-btn { appearance: none; outline: none; font-family: inherit; background-color: transparent; color: #999; padding: 6px 10px; border-radius: 15px; font-size: 0.85em; font-weight: 600; cursor: pointer; border: 1px solid #444; display: flex; align-items: center; gap: 5px; transition: all 0.2s ease-in-out; }
-.action-btn svg { fill: currentColor; }
-.action-btn:hover { color: #FF3131; border-color: rgba(255, 49, 49, 0.5); background-color: rgba(255, 49, 49, 0.1); }
-.action-btn:active { color: #ffffff; background-color: rgba(255, 49, 49, 0.3); transform: scale(0.98); }
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    color: #aaa;
+    font-size: 0.9em;
+}
